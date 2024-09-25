@@ -13,12 +13,14 @@ dest_music = "/home/ryan/Desktop/music"
 dest_pictures = "/home/ryan/Desktop/pictures"
 dest_videos = "/home/ryan/Desktop/videos"
 
+#function to check for duplicates and to actually move the files among directories
 def moveFile(dest, name, entry):
     if os.path.exists(dest + "/" + name):
         newName = name + "(copy)"
         os.rename(entry, newName)
     shutil.move(entry, dest)
 
+#Iterates throught the donwloads folder and sorts donwloads based on common file types
 class FileHandler(LoggingEventHandler):
     def on_modified(self, event):
         with os.scandir(source_dir) as entries:
